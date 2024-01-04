@@ -4,6 +4,7 @@ from clicker.autoclicker import AutoClicker
 from logs.logcapture import Logging
 from capturescreen.capturescreen import Capture
 from player.movement import Movement
+from player.sendkeys import SendKeys
 import ctypes
 
 FindWindow = ctypes.windll.user32.FindWindowA
@@ -17,6 +18,7 @@ class AutoClickerGUI:
         self.logscapture = Logging()
         self.capturescreen = Capture()
         self.player = Movement(self.hwnd)
+        self.sendkeys = SendKeys(self.hwnd)
 
         self.root = tk.Tk()
         self.root.title("ASA Background Automation")
@@ -40,6 +42,14 @@ class AutoClickerGUI:
         self.turn_right_button = ttk.Button(
             self.root, text="Turn Right", command=lambda: self.player.turn_90_degrees("right"))
         self.turn_right_button.pack(pady=5)
+        
+        self.entry_var = tk.StringVar()
+        self.text_entry = ttk.Entry(self.root, textvariable=self.entry_var)
+        self.text_entry.pack(pady=5)
+        
+        self.testbutton = ttk.Button(
+            self.root, text="Test", command=lambda: self.sendkeys.send_word(self.entry_var.get()))
+        self.testbutton.pack(pady=5)
 
     def update_clicker_button_text(self, text):
         self.click_button.config(text=text)
