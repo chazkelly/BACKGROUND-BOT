@@ -1,0 +1,348 @@
+<dmodule xmlns:xsi="http:"// www.w3.org/ 2001/ XMLSchema-instance xsi:noNamespaceSchemaLocation="C:\PROGRAMDATA\EAGLE\MLEDITORV2.0\Doctypes\S1000D-4.1\xml_schema_flat\process.xsd" xmlns:rdf= http:// www.w3.org/ 1999/ 02/ 22-rdf-syntax-ns# xmlns:xlink= http:// www.w3.org/ 1999/ xlink xmlns:dc= http:// www.purl.org/ dc/ elements/ 1.1 />
+<identAndStatusSection>
+    <dmAddress>
+        <dmIdent>
+            <dmCode assyCode="00" disassyCode="00" disassyCodeVariant="A" infoCode="400"
+                infoCodeVariant="A" itemLocationCode="A" modelIdentCode="EBIKE" subSubSystemCode="0"
+                subSystemCode="2" systemCode="HC3" systemDiffCode="001"></dmCode>
+            <language countryIsoCode="US" languageIsoCode="en"></language>
+            <issueInfo inWork="03" issueNumber="000"></issueInfo>
+        </dmIdent>
+        <dmAddressItems>
+            <issueDate day="11" month="08" year="2023"></issueDate>
+            <dmTitle>
+                <techName>Processing - General</techName>
+                <infoName>Fault reports and isolation procedures</infoName>
+            </dmTitle>
+        </dmAddressItems>
+    </dmAddress>
+    <dmStatus issueType="new">
+        <security securityClassification="01"></security>
+        <responsiblePartnerCompany enterpriseCode="K1234"></responsiblePartnerCompany>
+        <originator enterpriseCode="K1234"></originator>
+        <applic>
+            <displayText>
+                <simplePara>ALL</simplePara>
+            </displayText>
+        </applic>
+        <brexDmRef>
+            <dmRef>
+                <dmRefIdent>
+                    <dmCode modelIdentCode="EBIKE" systemDiffCode="001" systemCode="H00"
+                        subSystemCode="0" subSubSystemCode="0" assyCode="00" disassyCode="00"
+                        disassyCodeVariant="A" infoCode="022" infoCodeVariant="A"
+                        itemLocationCode="D"></dmCode>
+                </dmRefIdent>
+            </dmRef>
+        </brexDmRef>
+        <qualityAssurance>
+            <unverified></unverified>
+        </qualityAssurance>
+    </dmStatus>
+</identAndStatusSection>
+<content>
+    <refs>
+        <dmRef xlink:href="DMC_S1000DBIKE_AAA_D00_00_00_00AA_043A_A" xmlns:xlink= http:// www.w3.org/ 1999/ xlink>
+            <dmRefIdent>
+                <dmCode assyCode="00" disassyCode="00" disassyCodeVariant="00" infoCode="43A"
+                    infoCodeVariant="A" itemLocationCode="A" modelIdentCode="S1000DBIKE"
+                    subSubSystemCode="0" subSystemCode="D" systemCode="AAA" systemDiffCode="ALL"></dmCode>
+            </dmRefIdent>
+            <dmRefAddressItems></dmRefAddressItems>
+        </dmRef>
+    </refs>
+    <referencedApplicGroup>
+        <applic id="rightAnswer">
+            <displayText>
+                <simplePara>Inexperienced rider has the right answer</simplePara>
+            </displayText>
+            <expression>
+                <expression>
+                    <variableRef variableName="tourCorrectAnswer"></variableRef>
+                </expression>
+                <booleanOperator booleanOperation="equal"></booleanOperator>
+                <expression>
+                    <booleanValue>
+                        <trueValue></trueValue>
+                    </booleanValue>
+                </expression>
+            </expression>
+        </applic>
+        <applic id="wrongAnswer">
+            <displayText>
+                <simplePara>Inexperienced rider has the wrong answer.</simplePara>
+            </displayText>
+            <expression>
+                <expression>
+                    <variableRef variableName="tourCorrectAnswer"></variableRef>
+                </expression>
+                <booleanOperator booleanOperation="equal"></booleanOperator>
+                <expression>
+                    <booleanValue>
+                        <falseValue></falseValue>
+                    </booleanValue>
+                </expression>
+            </expression>
+        </applic>
+    </referencedApplicGroup>
+    <process>
+        <variableDeclarations>
+            <variable valueType="integer" variableName="age"></variable>
+            <variable valueType="string" variableName="name"></variable>
+            <variable valueType="string" variableName="level"></variable>
+            <variable variableName="amateur">
+                <initialize>
+                    <expression>
+                        <stringValue>amateur</stringValue>
+                    </expression>
+                </initialize>
+            </variable>
+            <variable valueType="boolean" variableName="tourCorrectAnswer">
+                <initialize>
+                    <expression>
+                        <booleanValue>
+                            <falseValue></falseValue>
+                        </booleanValue>
+                    </expression>
+                </initialize>
+            </variable>
+            <variable valueType="integer" variableName="tourMistakes"></variable>
+        </variableDeclarations>
+        <dmSeq>
+            <dmNode>
+                <proceduralStep>
+                    <title>Prerequisites</title>
+                    <para>Please make sure you are familiar with the functional description of a
+                        bike.</para>
+                </proceduralStep>
+            </dmNode>
+            <dmNode>
+                <dialog>
+                    <dialogGroup>
+                        <userEntry>
+                            <prompt>
+                                <paraBasic>Enter your name</paraBasic>
+                            </prompt>
+                            <variableRef variableName="name"></variableRef>
+                        </userEntry>
+                        <userEntry dataEntryFieldLength="3">
+                            <prompt>
+                                <paraBasic>Enter your age</paraBasic>
+                            </prompt>
+                            <variableRef variableName="age"></variableRef>
+                            <validate errorMessage="Age must be within 4 to 100">
+                                <expression>
+                                    <expression>
+                                        <expression>
+                                            <variableRef variableName="age"></variableRef>
+                                        </expression>
+                                        <numberOperator numberOperation="greaterThanOrEqual"></numberOperator>
+                                        <expression>
+                                            <integerValue>4</integerValue>
+                                        </expression>
+                                    </expression>
+                                    <booleanOperator booleanOperation="and"></booleanOperator>
+                                    <expression>
+                                        <expression>
+                                            <variableRef variableName="age"></variableRef>
+                                        </expression>
+                                        <numberOperator numberOperation="lessThanOrEqual"></numberOperator>
+                                        <expression>
+                                            <integerValue>100</integerValue>
+                                        </expression>
+                                    </expression>
+                                </expression>
+                            </validate>
+                        </userEntry>
+                        <menu choiceSelection="single" choiceType="select">
+                            <prompt>
+                                <paraBasic>Did you ever ride a bicycle?</paraBasic>
+                            </prompt>
+                            <menuChoice>
+                                <prompt>
+                                    <paraBasic>Yes</paraBasic>
+                                </prompt>
+                                <assertion>
+                                    <variableRef variableName="level"></variableRef>
+                                    <expression>
+                                        <stringValue>experienced</stringValue>
+                                    </expression>
+                                </assertion>
+                            </menuChoice>
+                            <menuChoice>
+                                <prompt>
+                                    <paraBasic>No</paraBasic>
+                                </prompt>
+                                <noAssertions></noAssertions>
+                            </menuChoice>
+                        </menu>
+                    </dialogGroup>
+                    <dialogGroup dialogSeparator="1">
+                        <message>
+                            <prompt>
+                                <paraBasic>Age must be within 4 to 100</paraBasic>
+                            </prompt>
+                            <prompt>
+                                <paraBasic>All fields are mandatory</paraBasic>
+                            </prompt>
+                        </message>
+                    </dialogGroup>
+                </dialog>
+            </dmNode>
+            <dmIf>
+                <expression>
+                    <booleanFunction booleanAction="not"></booleanFunction>
+                    <expression>
+                        <expression>
+                            <variableRef variableName="level"></variableRef>
+                        </expression>
+                        <numberOperator numberOperation="equal"></numberOperator>
+                        <expression>
+                            <stringValue>experienced</stringValue>
+                        </expression>
+                    </expression>
+                </expression>
+                <dmThenSeq>
+                    <dmLoop>
+                        <variablePreSet>
+                            <assertion>
+                                <variableRef variableName="tourMistakes"></variableRef>
+                                <expression>
+                                    <integerValue>0</integerValue>
+                                </expression>
+                            </assertion>
+                        </variablePreSet>
+                        <expression>
+                            <expression>
+                                <variableRef variableName="tourFinished"></variableRef>
+                            </expression>
+                            <numberOperator numberOperation="equal"></numberOperator>
+                            <expression>
+                                <booleanValue>
+                                    <falseValue></falseValue>
+                                </booleanValue>
+                            </expression>
+                        </expression>
+                        <dmSeq>
+                            <dmNode>
+                                <proceduralStep>
+                                    <title>Introduction</title>
+                                    <para>Dear <variableRef variableName="name"></variableRef>,
+                                        because you are an inexperienced user, you will be presented
+                                        a brief introduction on how to operate a bicycle.</para>
+                                </proceduralStep>
+                            </dmNode>
+                            <dmNode>
+                                <dmRef xlink:href="DMC_S1000DBIKE_AAA_D00_00_00_00AA_043A_A">
+                                    <dmRefIdent>
+                                        <dmCode assyCode="00" disassyCode="00"
+                                            disassyCodeVariant="00" infoCode="43A"
+                                            infoCodeVariant="A" itemLocationCode="A"
+                                            modelIdentCode="S1000DBIKE" subSubSystemCode="0"
+                                            subSystemCode="D" systemCode="AAA" systemDiffCode="ALL"></dmCode>
+                                    </dmRefIdent>
+                                </dmRef>
+                            </dmNode>
+                            <dmNode>
+                                <proceduralStep>
+                                    <title>Did you really read the instructions?</title>
+                                    <para>Before you can proceed to the practical section of this
+                                        manual, you will be given a simple question to test whether
+                                        you read the instructions carefully.</para>
+                                </proceduralStep>
+                            </dmNode>
+                            <dmNode>
+                                <dialog>
+                                    <menu choiceSelection="single" choiceType="select">
+                                        <prompt>
+                                            <paraBasic>The rear break is operated by</paraBasic>
+                                        </prompt>
+                                        <menuChoice>
+                                            <prompt>
+                                                <paraBasic>Left brake lever</paraBasic>
+                                            </prompt>
+                                            <assertion>
+                                                <variableRef variableName="tourCorrectAnswer"></variableRef>
+                                                <expression>
+                                                    <booleanValue>
+                                                        <falseValue></falseValue>
+                                                    </booleanValue>
+                                                </expression>
+                                            </assertion>
+                                            <assertion>
+                                                <variableRef variableName="tourMistakes"></variableRef>
+                                                <expression>
+                                                    <expression>
+                                                        <variableRef variableName="tourMistakes"></variableRef>
+                                                    </expression>
+                                                    <numberOperator numberOperation="plus"></numberOperator>
+                                                    <expression>
+                                                        <integerValue>1</integerValue>
+                                                    </expression>
+                                                </expression>
+                                            </assertion>
+                                        </menuChoice>
+                                        <menuChoice>
+                                            <prompt>
+                                                <paraBasic>Right brake lever</paraBasic>
+                                            </prompt>
+                                            <assertion>
+                                                <variableRef variableName="tourCorrectAnswer"></variableRef>
+                                                <expression>
+                                                    <booleanValue>
+                                                        <trueValue></trueValue>
+                                                    </booleanValue>
+                                                </expression>
+                                            </assertion>
+                                            <assertion>
+                                                <variableRef variableName="tourFinished"></variableRef>
+                                                <expression>
+                                                    <booleanValue>
+                                                        <trueValue></trueValue>
+                                                    </booleanValue>
+                                                </expression>
+                                            </assertion>
+                                        </menuChoice>
+                                    </menu>
+                                </dialog>
+                            </dmNode>
+                            <dmNodeAlts>
+                                <dmNode applicRefId="wrongAnswer">
+                                    <proceduralStep>
+                                        <title>Wrong Answer!</title>
+                                        <para>You will be given the introduction once again.</para>
+                                        <para>Number of mistakes: <variableRef
+                                                variableName="tourMistakes"></variableRef></para>
+                                    </proceduralStep>
+                                </dmNode>
+                                <dmNode applicRefId="rightAnswer">
+                                    <proceduralStep>
+                                        <title>Correct!</title>
+                                        <para>You can now continue with the practical part of this
+                                            manual.</para>
+                                    </proceduralStep>
+                                </dmNode>
+                            </dmNodeAlts>
+                        </dmSeq>
+                    </dmLoop>
+                </dmThenSeq>
+            </dmIf>
+            <dmNode>
+                <proceduralStep>
+                    <title>Practical part</title>
+                    <para>Take the bicycle from the garage.</para>
+                </proceduralStep>
+                <proceduralStep>
+                    <para>Clean the bicycle.</para>
+                </proceduralStep>
+                <proceduralStep>
+                    <para>Sit on the bike,</para>
+                </proceduralStep>
+                <proceduralStep>
+                    <para>...and RIDE!</para>
+                </proceduralStep>
+            </dmNode>
+        </dmSeq>
+    </process>
+</content>
+</dmodule>
