@@ -65,21 +65,15 @@ class SendKeys:
 
     def send_key_press(self, key_code):
         ctypes.windll.user32.PostMessageW(self.hwnd, self.WM_KEYPRESS, key_code, 0)
-        
-    def send_key(self, key_code):
-        ctypes.windll.user32.PostMessageW(self.hwnd, self.WM_KEYPRESS, key_code, 0)
-
+    
     def send_word(self, word):
         for char in word:
             key_code = ord(char.upper())
             self.send_key_press(key_code)
             
     def send_tab(self):
-        time.sleep(0.1)
         win32gui.PostMessage(self.hwnd, win32con.WM_KEYDOWN, self.VK_TAB, 0)
-        time.sleep(0.1)
         win32gui.PostMessage(self.hwnd, win32con.WM_KEYUP, self.VK_TAB, 0)
-        time.sleep(0.1)
             
     def send_enter(self):
         time.sleep(0.1)
@@ -87,3 +81,9 @@ class SendKeys:
         time.sleep(0.1)
         win32gui.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
         time.sleep(0.1)
+        
+    def send_ctrl_v(self):
+        win32gui.PostMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_CONTROL, 0)
+        win32gui.PostMessage(hwnd, win32con.WM_KEYDOWN, self.VK_V, 0)
+        win32gui.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_CONTROL, 0)
+        win32gui.PostMessage(hwnd, win32con.WM_KEYUP, self.VK_V, 0)

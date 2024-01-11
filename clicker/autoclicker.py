@@ -1,17 +1,20 @@
 import ctypes
 import time
 import threading
+import win32api
+import win32con
 
 WM_LBUTTONDOWN = 0x0201
 WM_LBUTTONUP = 0x0202
 MK_LBUTTON = 0x0001
 
 PostMessage = ctypes.windll.user32.PostMessageA
-
+FindWindow = ctypes.windll.user32.FindWindowA
 
 class AutoClicker:
-    def __init__(self, hwnd, clicker_button_callback=None):
+    def __init__(self, hwnd, Geforcenow, clicker_button_callback=None ):
         self.hwnd = hwnd
+        self.Geforcenow = Geforcenow
         self.stop_event = threading.Event()
         self.click_thread = None
         self.button_callback = clicker_button_callback
@@ -46,3 +49,4 @@ class AutoClicker:
     def update_button_text(self, text):
         if self.button_callback:
             self.button_callback(text)
+            
