@@ -12,9 +12,8 @@ PostMessage = ctypes.windll.user32.PostMessageA
 FindWindow = ctypes.windll.user32.FindWindowA
 
 class AutoClicker:
-    def __init__(self, hwnd, Geforcenow, clicker_button_callback=None ):
+    def __init__(self, hwnd, clicker_button_callback=None):
         self.hwnd = hwnd
-        self.Geforcenow = Geforcenow
         self.stop_event = threading.Event()
         self.click_thread = None
         self.button_callback = clicker_button_callback
