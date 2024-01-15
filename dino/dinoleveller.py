@@ -31,12 +31,15 @@ class DinoLeveller:
         self.bring_to_foreground()
         time.sleep(0.1)
         threading.Thread(target=self.click_loop, args=(x, y, clicks)).start()
-        
+
     def click(self, x, y):
-            client_point = ctypes.wintypes.POINT(x, y)
-            ctypes.windll.user32.ScreenToClient(self.hwnd, ctypes.byref(client_point))
-            PostMessage(self.hwnd, WM_LBUTTONDOWN, 1, ctypes.wintypes.LPARAM(client_point.y << 16 | client_point.x))
-            PostMessage(self.hwnd, WM_LBUTTONUP, 0, ctypes.wintypes.LPARAM(client_point.y << 16 | client_point.x))
+        client_point = ctypes.wintypes.POINT(x, y)
+        ctypes.windll.user32.ScreenToClient(
+            self.hwnd, ctypes.byref(client_point))
+        PostMessage(self.hwnd, WM_LBUTTONDOWN, 1, ctypes.wintypes.LPARAM(
+            client_point.y << 16 | client_point.x))
+        PostMessage(self.hwnd, WM_LBUTTONUP, 0, ctypes.wintypes.LPARAM(
+            client_point.y << 16 | client_point.x))
 
     def click_loop(self, x, y, clicks):
         for _ in range(clicks):
