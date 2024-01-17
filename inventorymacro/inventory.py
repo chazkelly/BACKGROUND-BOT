@@ -53,6 +53,7 @@ class MagicF:
         self.selected_option = selected_option
 
     def rawmeat(self):
+<<<<<<< HEAD
         self.inventory_handler.perform_action(256, 198, "raw", (385, 198))
 
     def berries(self):
@@ -69,6 +70,66 @@ class MagicF:
 
     def rawmeat_loop(self, is_rawmeat_active):
         self.inventory_handler.perform_loop(is_rawmeat_active, self.rawmeat)
+=======
+        self.dinoleveller.bring_to_foreground()
+        time.sleep(0.1)
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
+            time.sleep(0.1)
+        self.dinoleveller.start_click_loop(256, 198, 1)
+        self.sendkeys.send_word("raw")
+        self.dinoleveller.start_click_loop(385, 198, 1)
+        time.sleep(0.01)
+        self.sendkeys.send_key_press(self.sendkeys.VK_F)
+
+    def berries(self):
+        self.dinoleveller.bring_to_foreground()
+        time.sleep(0.1)
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
+            time.sleep(0.1)
+        self.dinoleveller.start_click_loop(256, 198, 1)
+        self.sendkeys.send_word("berry")
+        self.dinoleveller.start_click_loop(385, 198, 1)
+        time.sleep(0.01)
+        self.sendkeys.send_key_press(self.sendkeys.VK_F)
+
+    def paste(self):
+        self.dinoleveller.bring_to_foreground()
+        time.sleep(0.1)
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
+            time.sleep(0.1)
+        self.dinoleveller.start_click_loop(1278, 198, 1)
+        self.sendkeys.send_word("paste")
+        time.sleep(0.1)
+        self.dinoleveller.start_click_loop(1458, 198, 1)
+        time.sleep(0.01)
+        self.sendkeys.send_key_press(self.sendkeys.VK_F)
+
+    def takeall(self):
+        self.dinoleveller.bring_to_foreground()
+        time.sleep(0.1)
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
+            time.sleep(0.1)
+        self.dinoleveller.start_click_loop(1412, 198, 1)
+        time.sleep(0.01)
+        self.sendkeys.send_key_press(self.sendkeys.VK_F)
+
+    def cropplot(self):
+        self.dinoleveller.bring_to_foreground()
+        time.sleep(0.1)
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
+            time.sleep(0.1)
+        self.dinoleveller.start_click_loop(1412, 198, 1)
+        time.sleep(0.5)
+        self.dinoleveller.start_click_loop(386, 198, 1)
+        self.sendkeys.send_key_press(self.sendkeys.VK_F)
+
+    def rawmeat_loop(self, is_rawmeat_active):
+        while True:
+            self.rawmeat()
+            time.sleep(1)
+            if self.stop_event.is_set():
+                break
+>>>>>>> c39bb1b2e36fa0fd25bb420478acd6a2ce6b96dc
 
     def berry_loop(self, is_berry_active):
         self.inventory_handler.perform_loop(is_berry_active, self.berries)

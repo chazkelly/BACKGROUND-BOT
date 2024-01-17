@@ -49,7 +49,7 @@ class DinoInventory:
         self.dinoleveller.bring_to_foreground()
         self.sendkeys.send_key_press(self.sendkeys.VK_F)
         time.sleep(0.1)
-        while not self.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_key_press(self.sendkeys.VK_P)
@@ -74,7 +74,7 @@ class DinoInventory:
         self.dinoleveller.bring_to_foreground()
         self.sendkeys.send_key_press(self.sendkeys.VK_F)
         time.sleep(0.3)
-        while not self.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("err")
