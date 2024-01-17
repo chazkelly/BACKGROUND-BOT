@@ -46,7 +46,7 @@ class Logging:
 
     def capture_logs(self):
         while not self.stop_event.is_set():
-            image_path = r"logs\screenshots\logs_only.png"
+            image_path = "logs/screenshots/logs_only.png"
             self.logcapture.capture_window_and_save(output_file=image_path)
             logs = Image.open(image_path)
             if logs:
