@@ -10,7 +10,7 @@ class Movement:
         self.hwnd = hwnd
         self.stop_event = threading.Event()
         self.click_thread = None
-         
+        
     def turn_90_degrees(self, direction):
         if direction == "left":
             pyautogui.moveTo(0, 0)

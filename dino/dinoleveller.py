@@ -1,7 +1,6 @@
 import ctypes
 import time
 import threading
-import win32gui
 
 WM_LBUTTONDOWN = 0x0201
 WM_LBUTTONUP = 0x0202

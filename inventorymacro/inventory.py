@@ -20,7 +20,7 @@ class MagicF:
     def rawmeat(self):
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
-        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(256, 198, 1)
         self.sendkeys.send_word("raw")
@@ -31,7 +31,7 @@ class MagicF:
     def berries(self):
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
-        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(256, 198, 1)
         self.sendkeys.send_word("berry")
@@ -42,7 +42,7 @@ class MagicF:
     def paste(self):
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
-        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("paste")
@@ -54,7 +54,7 @@ class MagicF:
     def takeall(self):
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
-        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1412, 198, 1)
         time.sleep(0.01)
@@ -63,7 +63,7 @@ class MagicF:
     def cropplot(self):
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
-        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\templates\inventory.png"):
+        while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1412, 198, 1)
         time.sleep(0.5)
@@ -71,7 +71,7 @@ class MagicF:
         self.sendkeys.send_key_press(self.sendkeys.VK_F)
 
     def rawmeat_loop(self, is_rawmeat_active):
-        while is_rawmeat_active:
+        while True:
             self.rawmeat()
             time.sleep(1)
             if self.stop_event.is_set():

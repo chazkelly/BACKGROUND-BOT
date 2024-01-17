@@ -14,7 +14,7 @@ import keyboard
 from PIL import Image, ImageTk
 import ctypes
 import threading
-import time
+import os
 import sys
 
 
@@ -40,7 +40,7 @@ class AutoClickerGUI:
         self.root.title("ASA Automation")
         self.root.geometry("500x300")
         img = tk.PhotoImage(
-            file=r"C:\Users\Charlie\Documents\GitHub\BACKGROUND BOT\chaz.png")
+            file=self.resource_path("chaz.png"))
         self.root.iconphoto(True, img)
 
         self.notebook = ttk.Notebook(self.root)
@@ -238,6 +238,14 @@ class AutoClickerGUI:
 
     def update_magicf_button_text(self, text):
         self.activate_button.config(text=text)
+        
+    def resource_path(self, relative_path):
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+            
+        return os.path.join(base_path, relative_path)
 
     def run(self):
         self.root.mainloop()
