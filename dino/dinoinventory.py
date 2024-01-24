@@ -42,7 +42,6 @@ class DinoInventory:
             print("Template found in the specified area.")
             return True
         else:
-            print("Template not found in the specified area.")
             return False
 
     def keep_meat_hide(self):

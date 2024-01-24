@@ -51,9 +51,11 @@ class MagicF:
         self.stop_event = self.inventory_handler.stop_event
         self.button_callback = magic_f_button_callback
         self.selected_option = selected_option
+        self.dinoleveller = DinoLeveller(self.hwnd)
+        self.sendkeys = SendKeys(self.hwnd)
+        self.dinoinventory = DinoInventory(self.hwnd)
 
     def rawmeat(self):
-<<<<<<< HEAD
         self.inventory_handler.perform_action(256, 198, "raw", (385, 198))
 
     def berries(self):
@@ -70,7 +72,6 @@ class MagicF:
 
     def rawmeat_loop(self, is_rawmeat_active):
         self.inventory_handler.perform_loop(is_rawmeat_active, self.rawmeat)
-=======
         self.dinoleveller.bring_to_foreground()
         time.sleep(0.1)
         while not self.dinoinventory.match_template_in_specific_area(1200, 100, 200, 100, "templates/inventory.png"):
@@ -129,7 +130,6 @@ class MagicF:
             time.sleep(1)
             if self.stop_event.is_set():
                 break
->>>>>>> c39bb1b2e36fa0fd25bb420478acd6a2ce6b96dc
 
     def berry_loop(self, is_berry_active):
         self.inventory_handler.perform_loop(is_berry_active, self.berries)
@@ -142,4 +142,3 @@ class MagicF:
 
     def cropplot_loop(self, is_cropplot_active):
         self.inventory_handler.perform_loop(is_cropplot_active, self.cropplot)
-

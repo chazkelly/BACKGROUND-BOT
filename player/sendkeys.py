@@ -65,6 +65,11 @@ class SendKeys:
 
     def send_key_press(self, key_code):
         ctypes.windll.user32.PostMessageW(self.hwnd, self.WM_KEYPRESS, key_code, 0)
+        
+    def send_key_press_up(self, key_code):
+        ctypes.windll.user32.PostMessageW(self.hwnd, self.WM_KEYPRESS, key_code, 0)
+        ctypes.windll.user32.PostMessageW(self.hwnd, self.WM_KEYUP, key_code, 0)
+        
     
     def send_word(self, word):
         for char in word:
