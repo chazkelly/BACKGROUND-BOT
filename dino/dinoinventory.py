@@ -6,6 +6,8 @@ import time
 import cv2
 import numpy as np
 import pyautogui
+from PIL import Image
+import pytesseract
 
 
 PostMessage = ctypes.windll.user32.PostMessageA
@@ -24,6 +26,9 @@ class DinoInventory:
     def capture_specific_area(self, x, y, width, height):
         screenshot = pyautogui.screenshot(region=(x, y, width, height))
         screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+        # used to test the screenshot to see if it is actually in the right location
+        # cv2.imshow("screenshot", screenshot)
+        # cv2.waitKey(0)
         return screenshot
 
     def match_template_in_specific_area(self, x, y, width, height, template_path):
@@ -77,22 +82,27 @@ class DinoInventory:
             time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("err")
-        time.sleep(0.1)
+        time.sleep(0.2)
         self.dinoleveller.start_click_loop(1458, 198, 1)
         time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("s")
-        time.sleep(0.1)
+        time.sleep(0.3)
         self.dinoleveller.start_click_loop(1458, 198, 1)
-        time.sleep(0.1)
+        time.sleep(0.1) 
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("w")
-        time.sleep(0.1)
+        time.sleep(0.2)
         self.dinoleveller.start_click_loop(1458, 198, 1)
         time.sleep(0.1)
         self.dinoleveller.start_click_loop(1278, 198, 1)
         self.sendkeys.send_word("at")
+        time.sleep(0.2)
+        self.dinoleveller.start_click_loop(1458, 198, 1)
         time.sleep(0.1)
+        self.dinoleveller.start_click_loop(1278, 198, 1)
+        self.sendkeys.send_word("lint")
+        time.sleep(0.3)
         self.dinoleveller.start_click_loop(1458, 198, 1)
         time.sleep(0.1)
         self.sendkeys.send_key_press(self.sendkeys.VK_F)

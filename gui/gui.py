@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import *
 from clicker.autoclicker import AutoClicker
 from logs.logcapture import Logging
 from capturescreen.capturescreen import Capture
@@ -7,11 +8,15 @@ from player.movement import Movement
 from player.sendkeys import SendKeys
 from dino.dinoleveller import DinoLeveller
 from ini.ini import Ini
+from arb.arb import Arb
+from snails.snailempty import Snail
+from snails.snailembed import Discord
 from dino.dinoinventory import DinoInventory
 from inventorymacro.inventory import MagicF
 from settings.settings import Settings
 import keyboard
 from PIL import Image, ImageTk
+import pydirectinput as pdinput
 import ctypes
 import threading
 import os
@@ -32,31 +37,38 @@ class AutoClickerGUI:
         self.player = Movement(self.hwnd)
         self.sendkeys = SendKeys(self.hwnd)
         self.dinoleveller = DinoLeveller(self.hwnd)
+        self.snails = Snail(self.hwnd)
+        self.snailembed = Discord(self.hwnd)
         self.ini = Ini(self.hwnd)
         self.dinoinventory = DinoInventory(self.hwnd)
         self.settings = Settings()
+        self.arb = Arb(self.hwnd)
+
 
         self.root = tk.Tk()
         self.root.title("ASA Automation")
         self.root.geometry("500x300")
+        # self.root.resizable(0,0)
         img = tk.PhotoImage(
             file=self.resource_path("chaz.png"))
         self.root.iconphoto(True, img)
+        
+
 
         self.notebook = ttk.Notebook(self.root)
+        
 
         # Tab 1: Overview
         self.overview_tab = ttk.Frame(self.notebook)
         self.notebook.add(self.overview_tab, text='Overview')
-
         overviewlabel = ttk.Label(
             self.overview_tab, text='F1 - Keeps meat and hide when on meatrun\nF2 - Keeps metal on metal run\nF3 - Apply INI\nF4 - Level Dino HP\nF5 - Level Dino Melee (Doesnt work on water dinos)\nF6 - Turn on broken INI\nF7- Turn off broken INI\n')
         overviewlabel.grid(row=0, column=0, padx=10, pady=10, sticky='w')
         label1 = ttk.Label(
-            self.overview_tab, text='The background tab has a script to send logs to discord make sure your\nlogs are open when doing so.')
+            self.overview_tab, text='The background tab has a script to send logs to\n discord make sure your logs are open when doing so.')
         label1.grid(row=1, column=0, padx=10, pady=10, sticky='w')
         descriptionlabel = ttk.Label(
-            self.overview_tab, text='This is a script that helps automate things in Ark Survival Ascended. \nWritten by chazkelly.')
+            self.overview_tab, text='This is a script that helps automate things in\n Ark Survival Ascended. \nWritten by chazkelly.')
         descriptionlabel.grid(row=2, column=0, padx=10, pady=10, sticky='w')
         # Tab 2: Background
         self.background_tab = ttk.Frame(self.notebook)
@@ -174,11 +186,26 @@ class AutoClickerGUI:
         save_button = tk.Button(self.settings_tab, text="Save",
                                 command=lambda: self.settings.save_discord_webhook(entry))
         save_button.pack(pady=10)
+        
+        
+        
+        # Tab 8: Testing
+        self.test_tab = ttk.Frame(self.notebook)
+        self.notebook.add(self.test_tab, text="Testing")
+        
+        test_button = tk.Button(self.test_tab, text="Test snail",
+                                command=lambda: self.snails.empty_snail(29))
+        test_button.pack(pady=10)
+        
+        keyboard.add_hotkey("#", lambda: pdinput.moveRel(0, 300))
+        keyboard.add_hotkey("`", lambda: self.auto_clicker.toggle_clicking())
+
 
         self.notebook.pack(expand=True, fill='both')
 
     def activate_function(self):
         selected_value = self.selected_option.get()
+        selected_value == ""
 
         if selected_value == "RawMeat":
             self.inventory.stop_event.clear()
@@ -221,6 +248,7 @@ class AutoClickerGUI:
                              args=(self.is_cropplot_active,)).start()
 
     def deactivate_function(self):
+        selected_value = self.selected_option.get()
         self.inventory.stop_event.set()
         self.is_rawmeat_active = False
         self.is_berry_active = False
@@ -229,6 +257,7 @@ class AutoClickerGUI:
         self.is_cropplot_active = False
         self.activate_button.config(state=tk.NORMAL)
         self.deactivate_button.config(state=tk.DISABLED)
+        
 
     def update_clicker_button_text(self, text):
         self.click_button.config(text=text)

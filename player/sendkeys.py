@@ -92,3 +92,10 @@ class SendKeys:
         win32gui.PostMessage(hwnd, win32con.WM_KEYDOWN, self.VK_V, 0)
         win32gui.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_CONTROL, 0)
         win32gui.PostMessage(hwnd, win32con.WM_KEYUP, self.VK_V, 0)
+        
+    def send_esc(self):
+        time.sleep(0.1)
+        win32gui.PostMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_ESCAPE, 0)
+        time.sleep(0.1)
+        win32gui.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_ESCAPE, 0)
+        time.sleep(0.1)

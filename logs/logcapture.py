@@ -60,6 +60,20 @@ class Logging:
             time.sleep(self.send_interval)
         self.stop_event.clear()
         return "logs_only.png"
+    
+    def send_logs(self):
+        image_path = "logs/screenshots/logs_only.png"
+        self.logcapture.capture_window_and_save(output_file=image_path)
+        logs = Image.open(image_path)
+        if logs:
+            left = 757
+            top = 188
+            right = 1162
+            bottom = 828
+            cropped_image = logs.crop((left, top, right, bottom))
+            cropped_image.save(image_path)
+            self.post_to_discord(image_path)
+        return "logs_only.png"
 
     def post_to_discord(self, image_path):
         with open(image_path, 'rb') as file:
